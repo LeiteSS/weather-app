@@ -1,27 +1,74 @@
-# WeatherApp
+# Weather App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
+**DESCRIÇÃO**: Neste Labs o objetivo é evoluir mais ainda seus conhecimentos em Angular e desenvolvimento Web criando na prática um aplicativo de previsão do tempo utilizando Angular como tecnologia front-end cosumindo uma API externa, seu desafio será replicar esse essa aplicação utilizando angular e consumindo essa api de terceiros.
 
-## Development server
+## Anotações
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Para gerar o arquivo `tslint.json` instale o [TSLint command-line interface](https://palantir.github.io/tslint/usage/cli/) localmente ou globalmente. **Local** (no diretorio do seu projeto):
+```bash
+npm install tslint typescript --save-dev
+# or
+yarn add tslint typescript --dev
+```
+**Global** (Em todo sistema operacional):
+```bash
+npm install tslint typescript -g
+# or
+yarn global add tslint typescript
+```
+Depois de instalado use o comando `tslint --init` na raiz do projeto que o arquivo `json` irá ser gerado. 
 
-## Code scaffolding
+Altere  também o arquivo `tsconfig.json` para que seja possivel, por exemplo, desenvolver um modelo-entidade sem precisar declarar um construtor:
+```json
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+As dependencias que usaremos serão: 
+```bash
+# Bootstrap
+npm i bootstrap 
 
-## Build
+# Js Search
+npm i js-search
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Ts node
+npm i --save-dev ts-node
 
-## Running unit tests
+# Protractor
+npm i --save-dev protractor
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Eu optei por não instalar o tslint no meu projeto já que eu estou com ele instalado globalmente, mas por vias das duvidas
+npm i --save-dev tslint
+```
 
-## Running end-to-end tests
+Para subir a nossa aplicação para o github pages, usaremos os comandos:
+```bash
+npm i -g angular-cli-ghpages
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+ng build --prod --base-href="/weather-app/"
 
-## Further help
+angular-cli-ghpages --dir=dist/weather-app
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
