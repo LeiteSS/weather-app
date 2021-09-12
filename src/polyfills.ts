@@ -63,3 +63,7 @@ import 'zone.js';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+ import  'core-js/features/reflect';
+ import * as process from 'process';
+ 
+ window['process'] = process;

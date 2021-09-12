@@ -72,3 +72,16 @@ ng build --prod --base-href="/weather-app/"
 angular-cli-ghpages --dir=dist/weather-app
 ```
 
+### Variaveis de Ambiente
+
+Em Angular é diferente de ReactJs para usar o `process.env.VARIAVEL_DE_AMBIENTE`. As soluções para usar o arquivo `.env` são estas:
+
+- [How to add .env and use process.env to your typescript project](https://dev.to/francis04j/how-to-add-env-and-use-process-env-to-your-typescript-project-3d6b).
+- [Module not found: Error: Can't resolve 'fs' in node_modules\dotenv\lib'](https://stackoverflow.com/questions/59911706/module-not-found-error-cant-resolve-fs-in-node-modules-dotenv-lib).
+- [Angular 6 - process is not defined when trying to serve application](https://stackoverflow.com/questions/50313745/angular-6-process-is-not-defined-when-trying-to-serve-application).
+
+### Bootstrap não estava funcionando
+
+Solução:
+
+- [why is my Angular app not recognizing bootstrap styles?](https://stackoverflow.com/questions/56507786/why-is-my-angular-app-not-recognizing-bootstrap-styles).
