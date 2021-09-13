@@ -16,6 +16,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./home.page.scss']
 })
 export class HomePage implements OnInit, OnDestroy {
+
   cityWeather: CityWeather;
   loading$: Observable<boolean>;
   error$: Observable<boolean>;
@@ -30,6 +31,7 @@ export class HomePage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.searchControl = new FormControl('', Validators.required);
+
 
     this.store
         .pipe(

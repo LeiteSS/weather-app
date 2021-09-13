@@ -16,7 +16,7 @@
 
     <app-loader *ngIf="loading$ | async"></app-loader>
 
-    <div *ngIf="!(loading$ | async) && !(error$ | async)  && !!(cityWeather)">
+    <div *ngIf="!(loading$ | async) && !(error$ | async)  && !!cityWeather">
       <app-current-weather [cityWeather]="cityWeather"
                           (toggleBookmark)="onToggleBookmark()"></app-current-weather>
     </div>
