@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { CityWeather } from './../../../../shared/models/weather.model';
+import { CityWeather } from '../../../../shared/models/weather.model';
 
 @Component({
   selector: 'app-current-weather',
