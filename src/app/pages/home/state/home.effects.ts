@@ -1,10 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { Store } from "@ngrx/store";
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { map, mergeMap, catchError } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
-import { WeatherService } from "src/app/shared/service/weather.service";
+import { WeatherService } from 'src/app/shared/service/weather.service';
+import { CityWeather } from 'src/app/shared/models/weather.model';
 import * as fromHomeActions from './home.actions';
 
 @Injectable()
@@ -18,8 +19,22 @@ export class HomeEffects {
         this.store.dispatch(fromHomeActions.loadCurrentWeatherFailed());
         return caught$;
       }),
-      map((entity: any) => fromHomeActions.loadCurrentWeatherSuccess({ entity })),
+      map((entity: CityWeather) => fromHomeActions.loadCurrentWeatherSuccess({ entity })),
     ),
+  );
+
+  loadCurrentWeatherById$ = createEffect(() => this.actions$
+    .pipe(
+      ofType(fromHomeActions.loadCurrentWeatherById),
+      mergeMap(({ id }: { id: string }) =>
+        this.weatherService.getCityWeatherById(id)
+      ),
+      catchError((err, caught$) => {
+        this.store.dispatch(fromHomeActions.loadCurrentWeatherFailed());
+        return caught$;
+      }),
+      map((entity: CityWeather) => fromHomeActions.loadCurrentWeatherSuccess({entity})),
+    )
   );
 
   constructor(private actions$: Actions,

@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 import * as moment from 'moment-timezone';
 
-import { DailyWeather, Weather } from '../../../../shared/models/weather.model';
+import { DailyWeather, Weather } from 'src/app/shared/models/weather.model';
 
 @Component({
   selector: 'app-daily-weather',

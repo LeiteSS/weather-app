@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { AppState } from '../../../../shared/state/app.reducer';
+import { AppState } from 'src/app/shared/state/app.reducer';
 import { CityDailyWeather } from 'src/app/shared/models/weather.model';
 import * as fromDetailsActions from '../../state/details.actions';
 import * as fromDetailsSelectors from '../../state/details.selectors';

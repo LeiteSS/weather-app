@@ -10,7 +10,6 @@ export interface RouterState {
 }
 
 export class CustomRouterSerializer implements RouterStateSerializer<RouterState> {
-  
   serialize(routerState: RouterStateSnapshot): RouterState {
 
     const { url } = routerState;

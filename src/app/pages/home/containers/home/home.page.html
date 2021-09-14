@@ -12,6 +12,7 @@
     </div>
     <div class="form-group">
       <label>Pesquisar com <i>autocomplete</i></label>
+      <app-cities-typeahead [formControl]="searchControlWithAutocomplete"></app-cities-typeahead>
     </div>
 
     <app-loader *ngIf="loading$ | async"></app-loader>
