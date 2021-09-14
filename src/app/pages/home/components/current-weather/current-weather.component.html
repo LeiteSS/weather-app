@@ -2,7 +2,8 @@
   <div class="card-body">
     <h2>{{ cityName }}</h2>
 
-    <app-detailed-weather [weather]="cityWeather.weather"></app-detailed-weather>
+    <app-detailed-weather [weather]="cityWeather.weather"
+                          [unit]="unit"></app-detailed-weather>
     <div class="card-actions">
       <a class="card-link"
          (click)="onToggleBookmark()">

@@ -2,6 +2,12 @@
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
+
 a:not([href]), a:not([href]):hover {
   color: $primary;
   text-decoration: none;
@@ -49,9 +55,3 @@ a:not([href]), a:not([href]):hover {
     -webkit-transform: scale(1.0);
   }
 }
-
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
-
-/* Importing Datepicker SCSS file. */
-@import "~ngx-bootstrap/datepicker/bs-datepicker";

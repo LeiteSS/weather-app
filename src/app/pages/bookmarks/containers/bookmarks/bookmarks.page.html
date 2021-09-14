@@ -5,8 +5,8 @@
       <div *ngIf="!(bookmarks$ | async).length">Nenhum favorito adicionado</div>
       <ul class="list-unstyled">
         <li *ngFor="let bookmark of bookmarks$ | async">
-          <a 
-            [routerLink]="['.../details']"
+          <a
+            [routerLink]="['../details']"
             [queryParams]="{ lat: bookmark.coord.lat, lon: bookmark.coord.lon }"
           >
             {{ bookmark.name }}

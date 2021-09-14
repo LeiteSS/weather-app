@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ComponentFactoryResolver, ApplicationRef, Injector } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { PortalOutlet, DomPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 
 import { select, Store } from '@ngrx/store';
 import { combineLatest, Observable, Subject } from 'rxjs';
@@ -8,9 +9,12 @@ import { takeUntil, map } from 'rxjs/operators';
 import { CityWeather } from '../../../../shared/models/weather.model';
 import { Bookmark } from '../../../../shared/models/bookmark.model';
 import { CityTypeaheadItem } from 'src/app/shared/models/city-typeahead-item.model';
+import { UnitsSelectorComponent } from '../units-selector/units-selector.component';
+import { Units } from 'src/app/shared/models/units.enum';
 import * as fromHomeActions from '../../state/home.actions';
 import * as fromHomeSelectors from '../../state/home.selectors';
 import * as fromBookmarksSelectors from '../../../bookmarks/state/bookmarks.selectors';
+import * as fromConfigSelectors from '../../../../shared/state/config/config.selectors';
 
 @Component({
   selector: 'app-home',
@@ -30,11 +34,17 @@ export class HomePage implements OnInit, OnDestroy {
   searchControl: FormControl;
   searchControlWithAutocomplete: FormControl;
 
-  text: string;
+  unit$: Observable<Units>;
 
   private componentDestroyed$ = new Subject();
 
-  constructor(private store: Store) { }
+  private portalOutlet: PortalOutlet;
+
+  constructor(private store: Store,
+              private componentFactoryResolver: ComponentFactoryResolver,
+              private appRef: ApplicationRef,
+              private injector: Injector) {
+  }
 
   ngOnInit() {
     this.searchControl = new FormControl('', Validators.required);
@@ -68,12 +78,17 @@ export class HomePage implements OnInit, OnDestroy {
           return false;
         }),
       );
+
+    this.unit$ = this.store.pipe(select(fromConfigSelectors.selectUnitConfig));
+
+    this.setupPortal();
   }
 
   ngOnDestroy() {
     this.componentDestroyed$.next();
     this.componentDestroyed$.unsubscribe();
     this.store.dispatch(fromHomeActions.clearHomeState());
+    this.portalOutlet.detach();
   }
 
 
@@ -91,5 +106,16 @@ export class HomePage implements OnInit, OnDestroy {
     bookmark.coord = this.cityWeather.city.coord;
 
     this.store.dispatch(fromHomeActions.toggleBookmark({ entity: bookmark }));
+  }
+
+  private setupPortal() {
+    const el = document.querySelector('#navbar-portal-outlet');
+    this.portalOutlet = new DomPortalOutlet(
+      el,
+      this.componentFactoryResolver,
+      this.appRef,
+      this.injector,
+    );
+    this.portalOutlet.attach(new ComponentPortal(UnitsSelectorComponent));
   }
 }

@@ -1,5 +1,14 @@
+.navbar {
+  padding: 8px;
+
+  > .navbar-brand {
+    padding: 2px
+  }
+}
+
 .container-fluid {
   height: calc(100vh - 56px);
+  weight: 300px;
 
   > .row {
     height: 100%;

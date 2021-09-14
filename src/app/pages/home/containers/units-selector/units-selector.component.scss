@@ -1,0 +1,33 @@
+div {
+  display: flex;
+  align-items: center;
+  color: white;
+
+  padding-right: 5px;
+
+  > span {
+    margin-right: 8px;
+  }
+
+  > ul {
+    margin: 0;
+
+    > li {
+      cursor: pointer;
+
+      > .badge {
+        padding: 0.5em;
+        font-size: 1em;
+        color: white;
+      }
+
+        > .badge-primary {
+          background-color: blue;
+        }
+
+        > .badge-dark {
+          background-color: black;
+        }
+    }
+  }
+}
